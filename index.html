@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
+        <script src="data/Birdexportrichness_0.js"></script>
+        <script src="data/Birdnativerichness_1.js"></script>
+        <script src="data/Birdexportvolumeattributes_2.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_Birdexportrichness_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">ISO</th>\
+                        <td>' + (feature.properties['ISO'] !== null ? autolinker.link(feature.properties['ISO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nat. rich.</th>\
+                        <td>' + (feature.properties['Nat. rich.'] !== null ? autolinker.link(feature.properties['Nat. rich.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Exp. rich.</th>\
+                        <td>' + (feature.properties['Exp. rich.'] !== null ? autolinker.link(feature.properties['Exp. rich.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Birdexportrichness_0_0(feature) {
+            if (feature.properties['Exp. rich.'] >= 0.000000 && feature.properties['Exp. rich.'] <= 2.806500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 2.806500 && feature.properties['Exp. rich.'] <= 5.613000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(249,254,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 5.613000 && feature.properties['Exp. rich.'] <= 8.419500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(242,253,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 8.419500 && feature.properties['Exp. rich.'] <= 11.226000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,252,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 11.226000 && feature.properties['Exp. rich.'] <= 14.032500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(229,251,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 14.032500 && feature.properties['Exp. rich.'] <= 16.839000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(223,250,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 16.839000 && feature.properties['Exp. rich.'] <= 19.645500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(216,249,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 19.645500 && feature.properties['Exp. rich.'] <= 22.452000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(210,248,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 22.452000 && feature.properties['Exp. rich.'] <= 25.258500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,247,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 25.258500 && feature.properties['Exp. rich.'] <= 28.065000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(197,246,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 28.065000 && feature.properties['Exp. rich.'] <= 30.871500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,245,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 30.871500 && feature.properties['Exp. rich.'] <= 33.678000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,244,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 33.678000 && feature.properties['Exp. rich.'] <= 36.484500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,243,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 36.484500 && feature.properties['Exp. rich.'] <= 39.291000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(170,242,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 39.291000 && feature.properties['Exp. rich.'] <= 42.097500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,241,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 42.097500 && feature.properties['Exp. rich.'] <= 44.904000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(157,240,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 44.904000 && feature.properties['Exp. rich.'] <= 47.710500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(151,239,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 47.710500 && feature.properties['Exp. rich.'] <= 50.517000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(144,238,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 50.517000 && feature.properties['Exp. rich.'] <= 53.323500 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(138,236,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. rich.'] >= 53.323500 && feature.properties['Exp. rich.'] <= 56.130000 ) {
+                return {
+                pane: 'pane_Birdexportrichness_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(131,235,255,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Birdexportrichness_0');
+        map.getPane('pane_Birdexportrichness_0').style.zIndex = 400;
+        map.getPane('pane_Birdexportrichness_0').style['mix-blend-mode'] = 'normal';
+        var layer_Birdexportrichness_0 = new L.geoJson(json_Birdexportrichness_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Birdexportrichness_0',
+            layerName: 'layer_Birdexportrichness_0',
+            pane: 'pane_Birdexportrichness_0',
+            onEachFeature: pop_Birdexportrichness_0,
+            style: style_Birdexportrichness_0_0,
+        });
+        bounds_group.addLayer(layer_Birdexportrichness_0);
+        map.addLayer(layer_Birdexportrichness_0);
+        function pop_Birdnativerichness_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ISO'] !== null ? autolinker.link(feature.properties['ISO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nat. rich.'] !== null ? autolinker.link(feature.properties['Nat. rich.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Exp. rich.'] !== null ? autolinker.link(feature.properties['Exp. rich.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Birdnativerichness_1_0(feature) {
+            if (feature.properties['Nat. rich.'] >= 0.000000 && feature.properties['Nat. rich.'] <= 7.300000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 7.300000 && feature.properties['Nat. rich.'] <= 14.600000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,245,250,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 14.600000 && feature.properties['Nat. rich.'] <= 21.900000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(248,235,245,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 21.900000 && feature.properties['Nat. rich.'] <= 29.200000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(244,225,240,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 29.200000 && feature.properties['Nat. rich.'] <= 36.500000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,214,235,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 36.500000 && feature.properties['Nat. rich.'] <= 43.800000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,204,230,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 43.800000 && feature.properties['Nat. rich.'] <= 51.100000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,194,225,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 51.100000 && feature.properties['Nat. rich.'] <= 58.400000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(229,184,220,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 58.400000 && feature.properties['Nat. rich.'] <= 65.700000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(225,173,215,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 65.700000 && feature.properties['Nat. rich.'] <= 73.000000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(222,163,210,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 73.000000 && feature.properties['Nat. rich.'] <= 80.300000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,153,205,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 80.300000 && feature.properties['Nat. rich.'] <= 87.600000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(214,143,200,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 87.600000 && feature.properties['Nat. rich.'] <= 94.900000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(210,132,195,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 94.900000 && feature.properties['Nat. rich.'] <= 102.200000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,122,190,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 102.200000 && feature.properties['Nat. rich.'] <= 109.500000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,112,185,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 109.500000 && feature.properties['Nat. rich.'] <= 116.800000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(199,102,180,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 116.800000 && feature.properties['Nat. rich.'] <= 124.100000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(195,91,175,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 124.100000 && feature.properties['Nat. rich.'] <= 131.400000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(192,81,170,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 131.400000 && feature.properties['Nat. rich.'] <= 138.700000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(188,71,165,1.0)',
+                interactive: false,
+            }
+            }
+            if (feature.properties['Nat. rich.'] >= 138.700000 && feature.properties['Nat. rich.'] <= 146.000000 ) {
+                return {
+                pane: 'pane_Birdnativerichness_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(184,61,160,1.0)',
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_Birdnativerichness_1');
+        map.getPane('pane_Birdnativerichness_1').style.zIndex = 401;
+        map.getPane('pane_Birdnativerichness_1').style['mix-blend-mode'] = 'multiply';
+        var layer_Birdnativerichness_1 = new L.geoJson(json_Birdnativerichness_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Birdnativerichness_1',
+            layerName: 'layer_Birdnativerichness_1',
+            pane: 'pane_Birdnativerichness_1',
+            onEachFeature: pop_Birdnativerichness_1,
+            style: style_Birdnativerichness_1_0,
+        });
+        bounds_group.addLayer(layer_Birdnativerichness_1);
+        map.addLayer(layer_Birdnativerichness_1);
+        function pop_Birdexportvolumeattributes_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">ISO</th>\
+                        <td>' + (feature.properties['ISO'] !== null ? autolinker.link(feature.properties['ISO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Exp. vol.</th>\
+                        <td>' + (feature.properties['Exp. vol.'] !== null ? autolinker.link(feature.properties['Exp. vol.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Birdexportvolumeattributes_2_0(feature) {
+            if (feature.properties['Exp. vol.'] >= 0.100000 && feature.properties['Exp. vol.'] <= 1457.810000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 0.0,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 1457.810000 && feature.properties['Exp. vol.'] <= 2915.520000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 1.0526315789473684,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 2915.520000 && feature.properties['Exp. vol.'] <= 4373.230000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 2.1052631578947367,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 4373.230000 && feature.properties['Exp. vol.'] <= 5830.940000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 3.1578947368421053,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 5830.940000 && feature.properties['Exp. vol.'] <= 7288.650000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 4.2105263157894735,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 7288.650000 && feature.properties['Exp. vol.'] <= 8746.360000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 5.2631578947368425,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 8746.360000 && feature.properties['Exp. vol.'] <= 10204.070000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 6.315789473684211,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 10204.070000 && feature.properties['Exp. vol.'] <= 11661.780000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 7.368421052631579,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 11661.780000 && feature.properties['Exp. vol.'] <= 13119.490000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 8.421052631578947,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 13119.490000 && feature.properties['Exp. vol.'] <= 14577.200000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 9.473684210526315,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 14577.200000 && feature.properties['Exp. vol.'] <= 16034.910000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 10.526315789473685,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 16034.910000 && feature.properties['Exp. vol.'] <= 17492.620000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 11.578947368421053,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 17492.620000 && feature.properties['Exp. vol.'] <= 18950.330000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 12.631578947368421,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 18950.330000 && feature.properties['Exp. vol.'] <= 20408.040000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 13.68421052631579,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 20408.040000 && feature.properties['Exp. vol.'] <= 21865.750000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 14.736842105263158,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 21865.750000 && feature.properties['Exp. vol.'] <= 23323.460000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 15.789473684210526,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 23323.460000 && feature.properties['Exp. vol.'] <= 24781.170000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 16.842105263157894,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 24781.170000 && feature.properties['Exp. vol.'] <= 26238.880000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 17.894736842105264,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 26238.880000 && feature.properties['Exp. vol.'] <= 27696.590000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 18.94736842105263,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Exp. vol.'] >= 27696.590000 && feature.properties['Exp. vol.'] <= 29154.300000 ) {
+                return {
+                pane: 'pane_Birdexportvolumeattributes_2',
+                radius: 20.0,
+                opacity: 1,
+                color: 'rgba(255,1,1,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Birdexportvolumeattributes_2');
+        map.getPane('pane_Birdexportvolumeattributes_2').style.zIndex = 402;
+        map.getPane('pane_Birdexportvolumeattributes_2').style['mix-blend-mode'] = 'normal';
+        var layer_Birdexportvolumeattributes_2 = new L.geoJson(json_Birdexportvolumeattributes_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Birdexportvolumeattributes_2',
+            layerName: 'layer_Birdexportvolumeattributes_2',
+            pane: 'pane_Birdexportvolumeattributes_2',
+            onEachFeature: pop_Birdexportvolumeattributes_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Birdexportvolumeattributes_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Birdexportvolumeattributes_2);
+        map.addLayer(layer_Birdexportvolumeattributes_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Bird export volume - attributes<br /><table><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_014580.png" /></td><td>0 - 1458</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_145829161.png" /></td><td>1458 - 2916</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_291643732.png" /></td><td>2916 - 4373</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_437358313.png" /></td><td>4373 - 5831</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_583172894.png" /></td><td>5831 - 7289</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_728987465.png" /></td><td>7289 - 8746</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_8746102046.png" /></td><td>8746 - 10204</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_10204116627.png" /></td><td>10204 - 11662</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_11662131198.png" /></td><td>11662 - 13119</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_13119145779.png" /></td><td>13119 - 14577</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_145771603510.png" /></td><td>14577 - 16035</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_160351749311.png" /></td><td>16035 - 17493</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_174931895012.png" /></td><td>17493 - 18950</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_189502040813.png" /></td><td>18950 - 20408</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_204082186614.png" /></td><td>20408 - 21866</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_218662332315.png" /></td><td>21866 - 23323</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_233232478116.png" /></td><td>23323 - 24781</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_247812623917.png" /></td><td>24781 - 26239</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_262392769718.png" /></td><td>26239 - 27697</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportvolumeattributes_2_276972915419.png" /></td><td>27697 - 29154</td></tr></table>': layer_Birdexportvolumeattributes_2,'Bird native richness<br /><table><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_0730.png" /></td><td>0 - 7.3</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_731461.png" /></td><td>7.3 - 14.6</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_1462192.png" /></td><td>14.6 - 21.9</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_2192923.png" /></td><td>21.9 - 29.2</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_2923654.png" /></td><td>29.2 - 36.5</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_3654385.png" /></td><td>36.5 - 43.8</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_4385116.png" /></td><td>43.8 - 51.1</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_5115847.png" /></td><td>51.1 - 58.4</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_5846578.png" /></td><td>58.4 - 65.7</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_657739.png" /></td><td>65.7 - 73</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_7380310.png" /></td><td>73 - 80.3</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_80387611.png" /></td><td>80.3 - 87.6</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_87694912.png" /></td><td>87.6 - 94.9</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_949102213.png" /></td><td>94.9 - 102.2</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_1022109514.png" /></td><td>102.2 - 109.5</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_1095116815.png" /></td><td>109.5 - 116.8</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_1168124116.png" /></td><td>116.8 - 124.1</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_1241131417.png" /></td><td>124.1 - 131.4</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_1314138718.png" /></td><td>131.4 - 138.7</td></tr><tr><td style="text-align: center;"><img src="legend/Birdnativerichness_1_138714619.png" /></td><td>138.7 - 146</td></tr></table>': layer_Birdnativerichness_1,'Bird export richness<br /><table><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_0280.png" /></td><td>0 - 2.8</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_28561.png" /></td><td>2.8 - 5.6</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_56842.png" /></td><td>5.6 - 8.4</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_841123.png" /></td><td>8.4 - 11.2</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_112144.png" /></td><td>11.2 - 14</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_141685.png" /></td><td>14 - 16.8</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_1681966.png" /></td><td>16.8 - 19.6</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_1962257.png" /></td><td>19.6 - 22.5</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_2252538.png" /></td><td>22.5 - 25.3</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_2532819.png" /></td><td>25.3 - 28.1</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_28130910.png" /></td><td>28.1 - 30.9</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_30933711.png" /></td><td>30.9 - 33.7</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_33736512.png" /></td><td>33.7 - 36.5</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_36539313.png" /></td><td>36.5 - 39.3</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_39342114.png" /></td><td>39.3 - 42.1</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_42144915.png" /></td><td>42.1 - 44.9</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_44947716.png" /></td><td>44.9 - 47.7</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_47750517.png" /></td><td>47.7 - 50.5</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_50553318.png" /></td><td>50.5 - 53.3</td></tr><tr><td style="text-align: center;"><img src="legend/Birdexportrichness_0_53356119.png" /></td><td>53.3 - 56.1</td></tr></table>': layer_Birdexportrichness_0,}).addTo(map);
+        setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"Exp. vol.": "real"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Expvol = document.createElement("div");
+            div_Expvol.id = "div_Expvol";
+            div_Expvol.className = "slider";
+            document.getElementById("menu").appendChild(div_Expvol);
+            var lab_Expvol = document.createElement('div');
+            lab_Expvol.innerHTML  = 'Exp. vol.: <span id="val_Expvol"></span>';
+            lab_Expvol.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_Expvol);
+            var reset_Expvol = document.createElement('div');
+            reset_Expvol.innerHTML = 'clear filter';
+            reset_Expvol.className = 'filterlabel';
+            lab_Expvol.className = 'filterlabel';
+            reset_Expvol.onclick = function() {
+                sel_Expvol.noUiSlider.reset();
+            };
+            document.getElementById("menu").appendChild(reset_Expvol);
+            var sel_Expvol = document.getElementById('div_Expvol');
+            noUiSlider.create(sel_Expvol, {
+                connect: true,
+                start: [0.1, 29154.3],
+                range: {
+                min: 0.1,
+                max: 29154.3
+                }
+            });
+            sel_Expvol.noUiSlider.on('update', function (values) {
+            val_Expvol = document.getElementById('val_Expvol');
+            val_Expvol.innerHTML = values.join(' - ');
+                filterFunc()
+            });
+        </script>
+    </body>
+</html>
